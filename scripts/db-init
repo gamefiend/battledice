@@ -1,0 +1,11 @@
+#!/bin/bash
+if [ -z FLASK_APP ]; then
+    echo "Looks like the flask environment isn't bootstrapped. Please run scripts/bootstrap first"
+exit 1
+else
+    echo "performing initial database migration"
+    flask db init
+    flask db migrate
+    flask db upgrade
+    flask run
+    echo "Database initialized!"
